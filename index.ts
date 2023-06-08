@@ -78,3 +78,14 @@ console.log({ age });
 console.log({ street });
 console.log({ fullNameOfFriend });
 console.log({ ageOfFriend });
+
+let information = `
+    <p>fullName: ${fullName}</p>
+    <p>age: ${age}</p>
+    <p>street: ${street}</p>
+    <p>Full Name of Friend: ${fullNameOfFriend}</p>
+    <p>Age of Friend: ${ageOfFriend}</p>
+  `;
+
+const appDiv: HTMLElement = document.getElementById('app');
+appDiv.innerHTML = information;
