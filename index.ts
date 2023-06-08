@@ -1,4 +1,3 @@
-// Import stylesheets
 // Extend this type to make it support the usage below.
 // path should be recieved in dot notation and should give suggestions on keys.
 // correct return type should be calculated depending on the given path.
