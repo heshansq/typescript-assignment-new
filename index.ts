@@ -15,13 +15,24 @@ type ValueTypeInPath<T, P extends string> = P extends keyof T
 
 /**
  * NestedKeys: type which use to get nested keys and provide suggetion on path
- * TODO: Getting an error "NestedKeys<T[Extract<keyof T, string>]" recursive implementation
  */
-type NestedKeys<T> = T extends object
-  ?
-      | keyof T
-      | `${Extract<keyof T, string>}.${NestedKeys<T[Extract<keyof T, string>]>}`
-  : never;
+type NestedKeys<T, P extends string = never> = T extends
+  | string
+  | number
+  | bigint
+  | boolean
+  | null
+  | undefined
+  | ((...args: any) => any)
+  ? never
+  : {
+      [K in keyof T & string]: [P] extends [never]
+        ? K | `['${K}']` | NestedKeys<T[K], K>
+        :
+            | `${P}.${K}`
+            | `${P}['${K}']`
+            | NestedKeys<T[K], `${P}.${K}` | `${P}['${K}']`>;
+    }[keyof T & string];
 
 /**
  * getKeyValue: a recursive function outside of main get function to get value of the given path
