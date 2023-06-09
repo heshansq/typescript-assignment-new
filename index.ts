@@ -89,3 +89,7 @@ let information = `
 
 const appDiv: HTMLElement = document.getElementById('app');
 appDiv.innerHTML = information;
+
+/**
+ * Latest Update: Suggession key improvement is also done
+ */
